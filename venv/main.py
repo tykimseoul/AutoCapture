@@ -13,8 +13,11 @@ def is_different(imageA, imageB):
 
 
 def save_into_pdf():
-    images = [Image.open('./frames/' + image) for image in os.listdir('./frames')]
+    frames_path = './frames/'
+    images = [Image.open(frames_path + image) for image in os.listdir(frames_path)]
     images[0].save('./result.pdf', save_all=True, append_images=images[1:])
+    for image in os.listdir(frames_path):
+        os.remove(frames_path + image)
 
 
 def start():
